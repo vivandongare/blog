@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'npm'
@@ -25,15 +25,15 @@ jobs:
         run: npm run build -- --configuration production --base-href /${{ github.event.repository.name }}/
 
       - name: Add .nojekyll file
-        run: touch ./dist/my-project/browser/.nojekyll
+        run: touch ./dist/sundar-singh-web/browser/.nojekyll
 
       - name: Copy index.html to 404.html
-        run: cp ./dist/my-project/browser/index.html ./dist/my-project/browser/404.html
+        run: cp ./dist/sundar-singh-web/browser/index.html ./dist/sundar-singh-web/browser/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/my-project/browser'
+          path: './dist/sundar-singh-web/browser'
 
   deploy:
     runs-on: ubuntu-latest
