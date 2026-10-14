@@ -171,6 +171,17 @@ a {
     gap: 60px;
 }
 
+.about-content--single {
+    grid-template-columns: 1fr;
+}
+
+.about--standalone .section-header,
+.about--standalone .about-content {
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .about-text h3 {
     color: #1a1a2e;
     font-size: 28px;
@@ -181,9 +192,24 @@ a {
     color: #555;
 }
 
+.about-objective {
+    margin-top: 30px;
+    padding: 20px 24px;
+    border-left: 3px solid #1a1a2e;
+    background: #f5f5f5;
+}
+
 .about-stats {
     display: grid;
     gap: 30px;
+}
+
+.essay-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 42px auto;
+    border-radius: 12px;
 }
 
 .stat,
@@ -267,6 +293,17 @@ a {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+}
+
+.diligence-link {
+    margin: 32px 0 0;
+    text-align: center;
+}
+
+.diligence-link a {
+    color: #1a1a2e;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .downloads-grid {

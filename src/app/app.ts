@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { AboutProfileComponent } from './about-profile.component';
 
 export interface Essay {
   date: string;
@@ -15,7 +16,7 @@ export interface Essay {
 }
 
 @Component({
-  imports: [CommonModule, FormsModule, RouterLink, RouterOutlet],
+  imports: [AboutProfileComponent, CommonModule, FormsModule, RouterLink, RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -26,10 +27,6 @@ export class App implements OnInit {
   protected readonly notice = signal('');
   protected readonly essays = signal<Essay[]>([]);
   protected readonly isHome = signal(true);
-  protected readonly diligenceAreas = [
-    { title: 'Technology', text: 'Assessing process viability, scale-up risk, and techno-economic pathways across extraction, separation, processing, and recycling.' },
-    { title: 'Assets', text: 'Evaluating resource quality, project economics, and strategic positioning across deposits, projects, and upstream assets.' },
-  ];
   protected readonly speakingTopics = [
     ['Critical minerals', 'Supply chains, geopolitics, and strategic importance'],
     ['Mining technology', 'Innovation, scale-up challenges, and technical assessment'],

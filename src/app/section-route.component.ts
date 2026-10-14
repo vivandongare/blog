@@ -1,20 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [RouterLink],
   template: `
     <main class="temporary-page">
       <div class="temporary-page__content">
-        <a routerLink="/">&#8592; Back home</a>
         <p class="eyebrow">ROUTE PAGE</p>
         <h1>{{ title }}</h1>
         <p>This standalone page is ready for the {{ title }} content.</p>
       </div>
     </main>
   `,
-  styles: [`.temporary-page { min-height: 70vh; padding: 90px 24px; background: #f7f5f0; } .temporary-page__content { max-width: 900px; margin: 0 auto; } .temporary-page a { color: #1a1a2e; font-weight: 600; text-decoration: none; } .temporary-page h1 { margin: 24px 0 16px; color: #1a1a2e; font-size: clamp(48px, 8vw, 96px); } .temporary-page p:last-child { color: #555; font-size: 20px; }`],
+  styles: [`.temporary-page { min-height: 70vh; padding: 90px 24px; background: #f7f5f0; } .temporary-page__content { max-width: 900px; margin: 0 auto; } .temporary-page h1 { margin: 24px 0 16px; color: #1a1a2e; font-size: clamp(48px, 8vw, 96px); } .temporary-page p:last-child { color: #555; font-size: 20px; }`],
 })
 export class SectionRouteComponent {
   private readonly route = inject(ActivatedRoute);
