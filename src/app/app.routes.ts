@@ -1,18 +1,41 @@
 import { Routes } from '@angular/router';
 import { AboutProfileComponent } from './about-profile.component';
-import { DiligenceComponent } from './diligence.component';
-import { EssayDetailComponent } from './essay-detail.component';
-import { EssayListComponent } from './essay-list.component';
-import { SectionRouteComponent } from './section-route.component';
 
 export const routes: Routes = [
   { path: 'about', component: AboutProfileComponent },
-  { path: 'writings', component: EssayListComponent },
-  { path: 'writings/:episode', component: EssayDetailComponent },
-  { path: 'diligence', component: DiligenceComponent },
-  { path: 'speaking', component: SectionRouteComponent, data: { title: 'Speaking' } },
-  { path: 'downloads', component: SectionRouteComponent, data: { title: 'Downloads' } },
-  { path: 'contact', component: SectionRouteComponent, data: { title: 'Contact' } },
+  {
+    path: 'writings',
+    loadComponent: () =>
+      import('./essay-list.component').then((module) => module.EssayListComponent),
+  },
+  {
+    path: 'writings/:episode',
+    loadComponent: () =>
+      import('./essay-detail.component').then((module) => module.EssayDetailComponent),
+  },
+  {
+    path: 'diligence',
+    loadComponent: () =>
+      import('./diligence.component').then((module) => module.DiligenceComponent),
+  },
+  {
+    path: 'speaking',
+    loadComponent: () =>
+      import('./section-route.component').then((module) => module.SectionRouteComponent),
+    data: { title: 'Speaking' },
+  },
+  {
+    path: 'downloads',
+    loadComponent: () =>
+      import('./section-route.component').then((module) => module.SectionRouteComponent),
+    data: { title: 'Downloads' },
+  },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./section-route.component').then((module) => module.SectionRouteComponent),
+    data: { title: 'Contact' },
+  },
   { path: 'essays', redirectTo: 'writings', pathMatch: 'full' },
   { path: 'essays/:episode', redirectTo: 'writings/:episode', pathMatch: 'full' },
-]
+];

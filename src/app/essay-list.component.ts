@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { Essay } from './app';
+import { EssayService } from './essay.service';
 
 @Component({
   selector: 'app-essay-list',
@@ -14,7 +14,10 @@ import { Essay } from './app';
           <header class="essay-page-header">
             <p class="eyebrow">WRITINGS</p>
             <h1>All essays</h1>
-            <p>Elemental perspectives on minerals, metals, technology, and strategic resource systems.</p>
+            <p>
+              Elemental perspectives on minerals, metals, technology, and strategic resource
+              systems.
+            </p>
           </header>
           <div class="essay-list">
             @for (essay of essays(); track essay.episodeNumber) {
@@ -30,15 +33,81 @@ import { Essay } from './app';
       </div>
     </main>
   `,
-  styles: [`.essay-page { min-height: 70vh; padding: 52px 0 100px; background: #f7f5f0; } .essay-content { max-width: 900px; margin: 0 auto; } .essay-page-header { margin: 70px 0 48px; } .essay-page-header h1 { margin: 10px 0 14px; font-size: clamp(42px, 7vw, 76px); color: #1a1a2e; } .essay-page-header > p:last-child { color: #555; font-size: 18px; line-height: 1.7; } .essay-list { border-top: 1px solid #d8d4cc; } .essay-list-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 18px 30px; align-items: center; padding: 28px 0; border-bottom: 1px solid #d8d4cc; color: #1a1a2e; text-decoration: none; } .essay-list-item > span { font-size: 12px; letter-spacing: 1px; color: #8b5e34; } .essay-list-item h2 { margin: 0; font-size: clamp(21px, 3vw, 32px); } .essay-list-item time { grid-column: 2; color: #777; font-size: 14px; } .essay-list-item strong { grid-column: 3; grid-row: 1 / span 2; font-size: 13px; } .essay-list-item:hover h2 { color: #8b5e34; } @media (max-width: 600px) { .essay-list-item { grid-template-columns: 58px 1fr; gap: 10px 16px; } .essay-list-item time { grid-column: 2; } .essay-list-item strong { grid-column: 2; grid-row: auto; } }`],
+  styles: [
+    `
+      .essay-page {
+        min-height: 70vh;
+        padding: 52px 0 100px;
+        background: #f7f5f0;
+      }
+      .essay-content {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .essay-page-header {
+        margin: 70px 0 48px;
+      }
+      .essay-page-header h1 {
+        margin: 10px 0 14px;
+        font-size: clamp(42px, 7vw, 76px);
+        color: #1a1a2e;
+      }
+      .essay-page-header > p:last-child {
+        color: #555;
+        font-size: 18px;
+        line-height: 1.7;
+      }
+      .essay-list {
+        border-top: 1px solid #d8d4cc;
+      }
+      .essay-list-item {
+        display: grid;
+        grid-template-columns: 80px 1fr auto;
+        gap: 18px 30px;
+        align-items: center;
+        padding: 28px 0;
+        border-bottom: 1px solid #d8d4cc;
+        color: #1a1a2e;
+        text-decoration: none;
+      }
+      .essay-list-item > span {
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #8b5e34;
+      }
+      .essay-list-item h2 {
+        margin: 0;
+        font-size: clamp(21px, 3vw, 32px);
+      }
+      .essay-list-item time {
+        grid-column: 2;
+        color: #777;
+        font-size: 14px;
+      }
+      .essay-list-item strong {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        font-size: 13px;
+      }
+      .essay-list-item:hover h2 {
+        color: #8b5e34;
+      }
+      @media (max-width: 600px) {
+        .essay-list-item {
+          grid-template-columns: 58px 1fr;
+          gap: 10px 16px;
+        }
+        .essay-list-item time {
+          grid-column: 2;
+        }
+        .essay-list-item strong {
+          grid-column: 2;
+          grid-row: auto;
+        }
+      }
+    `,
+  ],
 })
 export class EssayListComponent {
-  private readonly http = inject(HttpClient);
-  protected readonly essays = signal<Essay[]>([]);
-
-  constructor() {
-    this.http.get<Essay[]>('/essays.json').subscribe((essays) => {
-      this.essays.set([...essays].sort((first, second) => second.episodeNumber - first.episodeNumber));
-    });
-  }
+  protected readonly essays = toSignal(inject(EssayService).essays, { initialValue: [] });
 }
