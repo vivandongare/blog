@@ -1,9 +1,11 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { AboutProfileComponent } from './about-profile.component';
+import { EssayService } from './essay.service';
 
 export interface Essay {
   date: string;
@@ -24,6 +26,10 @@ export class App implements OnInit {
   protected readonly menuOpen = signal(false);
   protected readonly notice = signal('');
   protected readonly isHome = signal(true);
+  protected readonly featuredEssay = toSignal(
+    inject(EssayService).essays.pipe(map((essays) => essays[0])),
+    { initialValue: undefined },
+  );
   protected readonly speakingTopics = [
     ['Critical minerals', 'Supply chains, geopolitics, and strategic importance'],
     ['Mining technology', 'Innovation, scale-up challenges, and technical assessment'],
