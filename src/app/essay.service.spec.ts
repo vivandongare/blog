@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -26,7 +27,8 @@ describe('EssayService', () => {
     service.essays.subscribe((items) => results.push(items.map((item) => item.episodeNumber)));
     service.essays.subscribe((items) => results.push(items.map((item) => item.episodeNumber)));
 
-    httpTesting.expectOne('/essays.json').flush(essays);
+    const essaysUrl = new URL('essays.json', TestBed.inject(DOCUMENT).baseURI).toString();
+    httpTesting.expectOne(essaysUrl).flush(essays);
 
     expect(results).toEqual([
       [2, 1],
@@ -37,6 +39,6 @@ describe('EssayService', () => {
 
     expect(results).toHaveLength(3);
     expect(results[2]).toEqual([2, 1]);
-    httpTesting.expectNone('/essays.json');
+    httpTesting.expectNone(essaysUrl);
   });
 });
