@@ -1,8 +1,30 @@
-:host { display: block; }
-.menu-button { display: none; }
+:host {
+  display: block;
+}
+
+.menu-button {
+  display: none;
+}
+
 @media screen and (max-width: 760px) {
-  .menu-button { display: block; background: transparent; border: 0; color: white; font-size: 22px; cursor: pointer; }
-  .navbar .container { position: relative; }
-  .nav-menu { display: none; }
-  .nav-menu.open { display: block; }
+  .menu-button {
+    display: block;
+    background: transparent;
+    border: 0;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .navbar .container {
+    position: relative;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-menu.open {
+    display: block;
+  }
 }
