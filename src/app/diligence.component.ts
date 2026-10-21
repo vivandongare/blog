@@ -119,7 +119,7 @@ import { Component } from '@angular/core';
       .diligence-page {
         min-height: 70vh;
         padding: 56px 0 90px;
-        background: #f5f5f5;
+        background: var(--warm-beige);
       }
 
       .diligence-intro,
@@ -141,7 +141,7 @@ import { Component } from '@angular/core';
 
       .diligence-intro h1 {
         margin: 12px 0 28px;
-        color: #1a1a2e;
+        color: var(--deep-blue);
         font-size: clamp(36px, 6vw, 64px);
         line-height: 1.1;
       }
@@ -161,7 +161,7 @@ import { Component } from '@angular/core';
 
       .diligence-area h2 {
         margin: 8px 0 22px;
-        color: #1a1a2e;
+        color: var(--deep-blue);
         font-size: clamp(26px, 4vw, 36px);
         line-height: 1.2;
       }
@@ -180,9 +180,9 @@ import { Component } from '@angular/core';
       .diligence-objective {
         margin-top: 28px;
         padding: 20px 24px;
-        border-left: 3px solid #1a1a2e;
-        color: #333;
-        background: #f5f5f5;
+        border-left: 3px solid var(--deep-blue);
+        color: var(--deep-blue);
+        background: #eee;
       }
 
       .technology-checks {
@@ -195,12 +195,12 @@ import { Component } from '@angular/core';
       .technology-check {
         padding: 22px;
         border-radius: 6px;
-        background: #f5f5f5;
+        background: #eee;
       }
 
       .technology-check h3 {
         margin-top: 0;
-        color: #1a1a2e;
+        color: var(--deep-blue);
         font-size: 18px;
       }
 

@@ -37,10 +37,10 @@ import { EssayService } from './essay.service';
       .essay-page {
         min-height: 70vh;
         padding: 52px 0 100px;
-        background: #f7f5f0;
+        background: var(--warm-beige);
       }
       .back-link {
-        color: #1a1a2e;
+        color: var(--deep-blue);
         font-weight: 600;
         text-decoration: none;
       }
@@ -50,12 +50,12 @@ import { EssayService } from './essay.service';
       }
       .essay-detail h1 {
         margin: 12px 0 16px;
-        color: #1a1a2e;
+        color: var(--deep-blue);
         font-size: clamp(40px, 7vw, 72px);
         line-height: 1.05;
       }
       .essay-detail > time {
-        color: #8b5e34;
+        color: var(--deep-blue);
         font-size: 14px;
       }
       .essay-cover {
@@ -68,13 +68,13 @@ import { EssayService } from './essay.service';
       }
       .essay-content {
         margin-top: 58px;
-        color: #3e3b37;
+        color: var(--deep-blue);
         font-size: 19px;
         line-height: 1.85;
       }
       .essay-content h2 {
         margin-top: 42px;
-        color: #1a1a2e;
+        color: var(--deep-blue);
         font-size: 30px;
         line-height: 1.2;
       }

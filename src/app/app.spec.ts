@@ -37,7 +37,7 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Sunder Singh');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Sundar Singh');
     expect(compiled.querySelector('.featured-card h3')?.textContent).toContain('Latest essay');
     expect(compiled.querySelector('.featured-meta')?.textContent).toContain('EP30');
     expect(compiled.querySelector('.featured-card a')?.getAttribute('href')).toBe('/writings/30');

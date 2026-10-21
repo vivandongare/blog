@@ -25,16 +25,9 @@ export const routes: Routes = [
     data: { title: 'Speaking' },
   },
   {
-    path: 'downloads',
-    loadComponent: () =>
-      import('./section-route.component').then((module) => module.SectionRouteComponent),
-    data: { title: 'Downloads' },
-  },
-  {
     path: 'contact',
     loadComponent: () =>
-      import('./section-route.component').then((module) => module.SectionRouteComponent),
-    data: { title: 'Contact' },
+      import('./contact.component').then((module) => module.ContactComponent),
   },
   { path: 'essays', redirectTo: 'writings', pathMatch: 'full' },
   { path: 'essays/:episode', redirectTo: 'writings/:episode', pathMatch: 'full' },

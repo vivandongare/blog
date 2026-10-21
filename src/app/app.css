@@ -11,7 +11,7 @@
     display: block;
     background: transparent;
     border: 0;
-    color: white;
+    color: var(--warm-beige);
     font-size: 22px;
     cursor: pointer;
   }

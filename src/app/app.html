@@ -1,5 +1,5 @@
 <header class="navbar">
-    <div class="container"><a class="logo" routerLink="/">SUNDER SINGH</a><button class="menu-button" type="button"
+    <div class="container"><a class="logo" routerLink="/">SUNDAR SINGH</a><button class="menu-button" type="button"
             aria-label="Toggle navigation" (click)="menuOpen.set(!menuOpen())">&#9776;</button>
         <nav class="nav-menu" [class.open]="menuOpen()">
             <ul>
@@ -8,7 +8,6 @@
                 <li><a routerLink="/writings" (click)="menuOpen.set(false)">Writings</a></li>
                 <li><a routerLink="/diligence" (click)="menuOpen.set(false)">Diligence</a></li>
                 <li><a routerLink="/speaking" (click)="menuOpen.set(false)">Speaking</a></li>
-                <li><a routerLink="/downloads" (click)="menuOpen.set(false)">Downloads</a></li>
                 <li><a routerLink="/contact" (click)="menuOpen.set(false)">Contact</a></li>
             </ul>
         </nav>
@@ -19,7 +18,7 @@
     <section class="hero" id="home">
         <div class="container hero-content">
             <p class="eyebrow">ELEMENTAL PERSPECTIVES / 2026</p>
-            <h1>Sunder Singh</h1>
+            <h1>Sundar Singh</h1>
             <p class="hero-subtitle">Mining <b>|</b> Critical Minerals <b>|</b> Strategic Diligence</p>
             <p class="hero-subtitle-secondary">Technology <b>|</b> Assets <b>|</b> Resource Security</p>
             <p class="hero-description">Research, writing, and strategic analysis across mineral systems, industrial
@@ -32,8 +31,7 @@
     <section class="writings section" id="writings">
         <div class="container">
             <div class="section-header">
-                <p class="eyebrow">02 / WRITINGS</p>
-                <h2>Elemental perspectives</h2>
+                <h2>WRITINGS</h2>
                 <p>Long-form essays on minerals, metals, technology, and strategic resource systems.</p>
             </div>@if (featuredEssay(); as essay) {<article class="featured-card">
                 <div class="featured-meta"><span>{{ essay.date | date: 'MMM d, y' }} / EP{{ essay.episodeNumber
@@ -41,11 +39,11 @@
                 <h3>{{ essay.header }}</h3>
                 <p>The latest essay in Elemental Perspectives.</p><a class="text-link"
                     [routerLink]="['/writings', essay.episodeNumber]">Read essay <span>↗</span></a>
-            </article>}<div class="archive">
-                <h4>Archive &amp; resources</h4><a routerLink="/writings">View all essays <span>↗</span></a><a
-                    routerLink="/writings">Browse by theme <span>↗</span></a><a href="#downloads">Download PDF archive
-                    <span>↗</span></a>
-            </div>
+                <div class="featured-card-links">
+                    <a class="text-link" routerLink="/writings">View all essays <span>↗</span></a>
+                    <a class="text-link" routerLink="/writings">Browse by theme <span>↗</span></a>
+                </div>
+            </article>}
         </div>
     </section>
     <section class="diligence" id="diligence">
@@ -83,53 +81,7 @@
                         <p>{{ topic[1] }}</p>
                     </div>
                 </div>
-                <div class="speaking-cta"><a class="btn btn-primary" href="#contact">Invite to speak</a></div>
-            </div>
-        </div>
-    </section>
-    <section class="downloads" id="downloads">
-        <div class="container">
-            <div class="section-header">
-                <h2>DOWNLOADS</h2>
-                <p>Resources, reports, and reference materials</p>
-            </div>
-            <div class="downloads-grid">
-                <article class="download-card"
-                    *ngFor="let item of ['Elemental Perspectives Archive', 'Strategic Diligence Framework', 'Critical Minerals Resource Guide']">
-                    <div class="download-icon">&#128196;</div>
-                    <h3>{{ item }}</h3>
-                    <p>Reference materials for supply chains and strategic evaluation.</p><a class="btn btn-primary"
-                        href="#contact">Download PDF</a>
-                </article>
-            </div>
-        </div>
-    </section>
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>CONTACT</h2>
-                <p>Let's connect and explore opportunities for collaboration</p>
-            </div>
-            <div class="contact-content">
-                <form class="contact-form" (ngSubmit)="sendMessage(name.value)" #contactForm="ngForm">
-                    <div class="form-group"><label for="name">Name</label><input id="name" name="name" #name required
-                            ngModel></div>
-                    <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email"
-                            required ngModel></div>
-                    <div class="form-group"><label for="subject">Subject</label><input id="subject" name="subject"
-                            required ngModel></div>
-                    <div class="form-group"><label for="message">Message</label><textarea id="message" name="message"
-                            rows="6" required ngModel></textarea></div><button class="btn btn-primary" type="submit"
-                        [disabled]="contactForm.invalid">Send Message</button>
-                </form>
-                <aside class="contact-info">
-                    <h3>Other Ways to Connect</h3>
-                    <p><strong>Email:</strong> <a href="mailto:contact@example.com">contact&#64;example.com</a></p>
-                    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com"
-                            target="_blank">linkedin.com/in/sundarsingh</a></p>
-                    <p><strong>Speaking Inquiries:</strong> <a
-                            href="mailto:speaking@example.com">speaking&#64;example.com</a></p>
-                </aside>
+                <div class="speaking-cta"><a class="btn btn-primary" routerLink="/contact">Invite to speak</a></div>
             </div>
         </div>
     </section>
@@ -153,6 +105,12 @@
 }
 <div class="floating-social-links"><a href="https://in.linkedin.com/in/rsundarsingh" target="_blank"
         title="LinkedIn">in</a><a href="https://youtube.com" target="_blank" title="YouTube">▶</a></div>
+@if (showBackToTop()) {
+    <button class="back-to-top" type="button" (click)="scrollToTop()" aria-label="Back to top"
+        [style.bottom.px]="backToTopBottom()">
+        Back to top ↑
+    </button>
+}
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -160,18 +118,10 @@
                 <h4>SUNDER SINGH</h4>
                 <p>Minerals | Critical Metals | Strategic Diligence</p>
             </div>
-            <div class="footer-section">
-                <h4>NAVIGATION</h4><a href="#home">Home</a><a href="#about">About</a><a
-                    routerLink="/writings">Writings</a><a href="#diligence">Strategic Diligence</a><a
-                    href="#downloads">Downloads</a>
-            </div>
-            <div class="footer-section">
-                <h4>CONNECT</h4><a href="https://linkedin.com" target="_blank">LinkedIn</a><a
-                    href="mailto:contact@example.com">Email</a>
-            </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Sunder Singh. All rights reserved.</p>
+            <p>&copy; 2026 Sundar Singh. All rights reserved.</p>
+            <p>Developed by <a href="https://vyaom.com/">Vyaom</a>.</p>
         </div>
     </div>
 </footer>

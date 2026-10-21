@@ -8,17 +8,21 @@ import { Component, Input } from '@angular/core';
       <div class="container">
         <div class="section-header">
           <h2>ABOUT</h2>
-          <p>
-            {{
-              homePage
-                ? 'Professional journey and focus areas'
-                : "An operator's perspective on mining technology and real-world value"
-            }}
-          </p>
+          @if (homePage) {
+            <p>Professional journey and focus areas</p>
+          }
         </div>
         <div class="about-content" [class.about-content--single]="!homePage">
+          @if (!homePage) {
+            <figure class="about-portrait">
+              <img src="/SundarSingh.jfif" alt="Sundar Singh" />
+              <figcaption>Sundar Singh</figcaption>
+            </figure>
+          }
           <div class="about-text">
-            <h3>Sunder Singh</h3>
+            @if (homePage) {
+              <h3>Sundar Singh</h3>
+            }
             @if (homePage) {
               <p>
                 Designing India's first community-participatory mining model taught me that
