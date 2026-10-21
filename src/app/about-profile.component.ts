@@ -15,7 +15,7 @@ import { Component, Input } from '@angular/core';
         <div class="about-content" [class.about-content--single]="!homePage">
           @if (!homePage) {
             <figure class="about-portrait">
-              <img src="/SundarSingh.jfif" alt="Sundar Singh" />
+              <img src="SundarSingh.jfif" alt="Sundar Singh" />
               <figcaption>Sundar Singh</figcaption>
             </figure>
           }
