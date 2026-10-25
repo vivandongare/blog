@@ -133,7 +133,7 @@ import { Component } from '@angular/core';
       }
 
       .eyebrow {
-        color: #666;
+        color: var(--accent);
         font-size: 13px;
         font-weight: 600;
         letter-spacing: 2px;
@@ -148,7 +148,7 @@ import { Component } from '@angular/core';
 
       .diligence-intro p:not(.eyebrow),
       .diligence-area > p:not(.eyebrow) {
-        color: #555;
+        color: var(--muted);
         font-size: 17px;
       }
 
@@ -156,7 +156,7 @@ import { Component } from '@angular/core';
         margin-top: 36px;
         padding: 38px;
         border-radius: 8px;
-        background: #fff;
+        background: var(--surface);
       }
 
       .diligence-area h2 {
@@ -174,7 +174,7 @@ import { Component } from '@angular/core';
         display: grid;
         gap: 14px;
         padding-left: 24px;
-        color: #555;
+        color: var(--muted);
       }
 
       .diligence-objective {
@@ -182,7 +182,7 @@ import { Component } from '@angular/core';
         padding: 20px 24px;
         border-left: 3px solid var(--deep-blue);
         color: var(--deep-blue);
-        background: #eee;
+        background: var(--warm-beige);
       }
 
       .technology-checks {
@@ -195,7 +195,7 @@ import { Component } from '@angular/core';
       .technology-check {
         padding: 22px;
         border-radius: 6px;
-        background: #eee;
+        background: var(--warm-beige);
       }
 
       .technology-check h3 {
@@ -206,7 +206,7 @@ import { Component } from '@angular/core';
 
       .technology-check p {
         margin-bottom: 0;
-        color: #555;
+        color: var(--muted);
       }
 
       @media (max-width: 768px) {

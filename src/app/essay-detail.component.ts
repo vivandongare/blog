@@ -87,7 +87,7 @@ import { EssayService } from './essay.service';
       }
       .essay-loading {
         margin-top: 80px;
-        color: #666;
+        color: var(--muted);
       }
     `,
   ],

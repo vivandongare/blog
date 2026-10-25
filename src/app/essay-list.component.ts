@@ -76,7 +76,7 @@ import { EssayService } from './essay.service';
         color: var(--deep-blue);
       }
       .essay-page-header > p:last-child {
-        color: #555;
+        color: var(--muted);
         font-size: 18px;
         line-height: 1.7;
       }
@@ -98,10 +98,10 @@ import { EssayService } from './essay.service';
       .theme-filter select {
         min-width: 160px;
         padding: 10px 12px;
-        border: 1px solid rgba(11, 31, 58, 0.35);
+        border: 1px solid var(--border);
         border-radius: 4px;
         color: var(--deep-blue);
-        background: #fff;
+        background: var(--surface);
         font: inherit;
       }
       .essay-search {
@@ -116,17 +116,17 @@ import { EssayService } from './essay.service';
       .essay-search input {
         width: 100%;
         padding: 10px 12px;
-        border: 1px solid rgba(11, 31, 58, 0.35);
+        border: 1px solid var(--border);
         border-radius: 4px;
         color: var(--deep-blue);
-        background: #fff;
+        background: var(--surface);
         font: inherit;
       }
       .essay-list {
-        border-top: 1px solid rgba(11, 31, 58, 0.2);
+        border-top: 1px solid var(--border);
       }
       .no-results {
-        color: #555;
+        color: var(--muted);
       }
       .essay-list-item {
         display: grid;
@@ -134,7 +134,7 @@ import { EssayService } from './essay.service';
         gap: 18px 30px;
         align-items: center;
         padding: 28px 0;
-        border-bottom: 1px solid rgba(11, 31, 58, 0.2);
+        border-bottom: 1px solid var(--border);
         color: var(--deep-blue);
         text-decoration: none;
       }
@@ -149,7 +149,7 @@ import { EssayService } from './essay.service';
       }
       .essay-list-item time {
         grid-column: 2;
-        color: #777;
+        color: var(--muted);
         font-size: 14px;
       }
       .essay-list-item strong {
@@ -158,7 +158,7 @@ import { EssayService } from './essay.service';
         font-size: 13px;
       }
       .essay-list-item:hover h2 {
-        color: var(--deep-blue);
+        color: var(--accent);
       }
       @media (max-width: 600px) {
         .essay-controls {

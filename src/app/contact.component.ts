@@ -70,7 +70,7 @@ import { FormsModule } from '@angular/forms';
 
       .contact-form,
       .contact-info {
-        background: #fff;
+        background: var(--surface);
       }
     `,
   ],
