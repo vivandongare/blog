@@ -19,10 +19,12 @@ export const routes: Routes = [
       import('./diligence.component').then((module) => module.DiligenceComponent),
   },
   {
+    path: 'ideas',
+    loadComponent: () => import('./ideas.component').then((module) => module.IdeasComponent),
+  },
+  {
     path: 'speaking',
-    loadComponent: () =>
-      import('./section-route.component').then((module) => module.SectionRouteComponent),
-    data: { title: 'Speaking' },
+    loadComponent: () => import('./speaking.component').then((module) => module.SpeakingComponent),
   },
   {
     path: 'contact',

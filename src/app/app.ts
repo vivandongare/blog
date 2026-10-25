@@ -1,11 +1,6 @@
-import { Component, HostListener, OnInit, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, HostListener, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { filter, map } from 'rxjs';
-import { AboutProfileComponent } from './about-profile.component';
-import { EssayService } from './essay.service';
+import { filter } from 'rxjs';
 
 export interface Essay {
   date: string;
@@ -18,27 +13,16 @@ export interface Essay {
 }
 
 @Component({
-  imports: [AboutProfileComponent, CommonModule, FormsModule, RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App implements OnInit {
   protected readonly menuOpen = signal(false);
-  protected readonly notice = signal('');
   protected readonly isHome = signal(true);
   protected readonly showBackToTop = signal(false);
   protected readonly backToTopBottom = signal(24);
-  protected readonly featuredEssay = toSignal(
-    inject(EssayService).essays.pipe(map((essays) => essays[0])),
-    { initialValue: undefined },
-  );
-  protected readonly speakingTopics = [
-    ['Critical minerals', 'Supply chains, geopolitics, and strategic importance'],
-    ['Mining technology', 'Innovation, scale-up challenges, and technical assessment'],
-    ['Resource security', 'National security, supply resilience, and strategic positioning'],
-    ['Supply systems', 'End-to-end value chains and market dynamics'],
-  ];
 
   constructor(private readonly router: Router) {}
 
@@ -69,9 +53,4 @@ export class App implements OnInit {
   protected scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  protected subscribe(email: string): void {
-    this.notice.set(`Thanks for subscribing. We will send updates to ${email}.`);
-  }
-
 }

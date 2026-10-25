@@ -5,6 +5,7 @@
             <ul>
                 <li><a routerLink="/" (click)="menuOpen.set(false)">Home</a></li>
                 <li><a routerLink="/about" (click)="menuOpen.set(false)">About</a></li>
+                <li><a routerLink="/ideas" (click)="menuOpen.set(false)">Ideas</a></li>
                 <li><a routerLink="/writings" (click)="menuOpen.set(false)">Writings</a></li>
                 <li><a routerLink="/diligence" (click)="menuOpen.set(false)">Diligence</a></li>
                 <li><a routerLink="/speaking" (click)="menuOpen.set(false)">Speaking</a></li>
@@ -14,91 +15,104 @@
     </div>
 </header>
 @if (isHome()) {
-<main>
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <p class="eyebrow">ELEMENTAL PERSPECTIVES / 2026</p>
-            <h1>Sundar Singh</h1>
-            <p class="hero-subtitle">Mining <b>|</b> Critical Minerals <b>|</b> Strategic Diligence</p>
-            <p class="hero-subtitle-secondary">Technology <b>|</b> Assets <b>|</b> Resource Security</p>
-            <p class="hero-description">Research, writing, and strategic analysis across mineral systems, industrial
-                metals, and resource security.</p>
-            <div class="hero-buttons"><a class="btn btn-primary" routerLink="/writings">Explore writings</a><a
-                    class="btn btn-secondary" routerLink="/diligence">Strategic diligence</a></div>
-        </div>
-    </section>
-    <app-about-profile [homePage]="true" />
-    <section class="writings section" id="writings">
-        <div class="container">
-            <div class="section-header">
-                <h2>WRITINGS</h2>
-                <p>Long-form essays on minerals, metals, technology, and strategic resource systems.</p>
-            </div>@if (featuredEssay(); as essay) {<article class="featured-card">
-                <div class="featured-meta"><span>{{ essay.date | date: 'MMM d, y' }} / EP{{ essay.episodeNumber
-                        }}</span><b>FEATURED</b></div>
-                <h3>{{ essay.header }}</h3>
-                <p>The latest essay in Elemental Perspectives.</p><a class="text-link"
-                    [routerLink]="['/writings', essay.episodeNumber]">Read essay <span>↗</span></a>
-                <div class="featured-card-links">
-                    <a class="text-link" routerLink="/writings">View all essays <span>↗</span></a>
-                    <a class="text-link" routerLink="/writings">Browse by theme <span>↗</span></a>
-                </div>
-            </article>}
-        </div>
-    </section>
-    <section class="diligence" id="diligence">
-        <div class="container">
-            <div class="section-header">
-                <h2>STRATEGIC DILIGENCE</h2>
-                <p>Will it survive contact with operational reality? I stress-test the assumptions behind mineral assets
-                    and the technologies intended to unlock them.</p>
+<main class="home-page">
+    <section class="home-hero" id="home">
+        <div class="container home-hero-content">
+            <p class="eyebrow">INDEPENDENT MINING &amp; METALS ADVISORY</p>
+            <h1>Dr. Sundar Singh <span>Advisor to investors, founders and operators in mining and metals</span></h1>
+            <p class="home-hero-tagline">Beyond the story. Into the reality.</p>
+            <p class="home-hero-lead">Independent diligence on mineral assets, mining technologies and critical-mineral
+                value chains.</p>
+            <p class="home-hero-description">A mineral asset can look compelling on paper. A technology can perform
+                impressively in a pilot. A strategy can sound persuasive in a boardroom. The harder question is what
+                survives contact with the orebody, the flowsheet, operating conditions, economics and the market.</p>
+            <p class="home-hero-description">I have run mines, commissioned plants and scaled production. I bring that
+                operator's perspective to these decisions, connecting technical evidence with commercial consequences
+                to help investors, operators, founders and decision-makers distinguish genuine advantage from
+                apparent promise.</p>
+            <div class="home-actions">
+                <a class="btn btn-primary" routerLink="/diligence">Explore the Work</a>
+                <a class="btn btn-secondary" routerLink="/writings">Read the Writings</a>
             </div>
-            <div class="diligence-grid">
-                <article class="diligence-card">
-                    <h3>Assets</h3>
-                    <p>Good reports are easy to produce. Bankable assets are rare. Drawing on 100+ mineral asset
-                        evaluations, I uncover mispriced opportunities and expose hidden risks.</p>
+        </div>
+    </section>
+
+    <section class="home-practices" id="work" aria-labelledby="home-practices-heading">
+        <div class="container">
+            <header class="home-section-heading">
+                <p class="eyebrow">INDEPENDENT DILIGENCE</p>
+                <h2 id="home-practices-heading">Three questions. Three practices.</h2>
+            </header>
+            <div class="home-practice-grid">
+                <article class="home-practice-card">
+                    <p class="home-practice-name">OREINTEL / ASSET DILIGENCE</p>
+                    <h3>Does this mineral asset deserve capital?</h3>
+                    <p>A positive PEA, PFS or DFS is a starting point, not a verdict. I examine the assumptions behind
+                        the study, the technical and execution risks that could change the investment case, and the
+                        strengths that may be overlooked.</p>
+                    <a class="home-text-link" routerLink="/diligence">Explore Asset Diligence <span aria-hidden="true">↗</span></a>
                 </article>
-                <article class="diligence-card">
-                    <h3>Technology</h3>
-                    <p>Does it remove the constraint limiting an asset's value—or simply move it? I test constraint-fit,
-                        shifting risks, and whether an advantage holds through scale-up.</p>
+                <article class="home-practice-card">
+                    <p class="home-practice-name">TECTONICS / TECHNOLOGY DILIGENCE</p>
+                    <h3>Does this technology remove the constraint, or move it?</h3>
+                    <p>Technology readiness and pilot performance do not, by themselves, prove commercial advantage.
+                        I test whether a technology addresses the bottleneck that limits value, creates a more costly
+                        constraint elsewhere, and delivers benefits that endure at scale. Founders get the same
+                        straight answer: which claims hold, and what evidence would make the case stronger.</p>
+                    <a class="home-text-link" routerLink="/diligence">Explore Technology Diligence <span aria-hidden="true">↗</span></a>
+                </article>
+                <article class="home-practice-card">
+                    <p class="home-practice-name">FUTUREFRAME / INNOVATION ROADMAPS</p>
+                    <h3>Where is value moving across critical-mineral chains?</h3>
+                    <p>Cross-sector innovation roadmaps and value-chain intelligence help organisations assess
+                        emerging risks, resource-security priorities and opportunities for capital, technology and
+                        policy.</p>
+                    <a class="home-text-link" routerLink="/contact">Explore Innovation Roadmaps <span aria-hidden="true">↗</span></a>
                 </article>
             </div>
-            <p class="diligence-link"><a routerLink="/diligence">Explore strategic diligence &#8599;</a></p>
         </div>
     </section>
-    <section class="speaking" id="speaking">
-        <div class="container">
-            <div class="section-header">
-                <h2>SPEAKING</h2>
-                <p>Public authority on minerals, critical metals, technology, and resource security.</p>
+
+    <section class="home-operator" id="perspective" aria-labelledby="home-operator-heading">
+        <div class="container home-operator-content">
+            <div>
+                <p class="eyebrow">THREE DECADES ON THE OPERATING SIDE</p>
+                <h2 id="home-operator-heading">An operator's perspective</h2>
             </div>
-            <div class="speaking-content">
-                <div class="speaking-topics">
-                    <div class="speaking-topic" *ngFor="let topic of speakingTopics">
-                        <h4>{{ topic[0] }}</h4>
-                        <p>{{ topic[1] }}</p>
-                    </div>
-                </div>
-                <div class="speaking-cta"><a class="btn btn-primary" routerLink="/contact">Invite to speak</a></div>
+            <div>
+                <p>My perspective draws on more than three decades across mining operations, mineral processing, mine
+                    commissioning, project execution and steelmaking strategy, alongside technology diligence on
+                    500+ mining and deep-tech startups and techno-economic evaluation of 100+ mineral assets.</p>
+                <p>I assess opportunities not by novelty or reported performance alone, but by whether the evidence,
+                    constraints and economics add up to lasting value.</p>
+                <a class="home-text-link" routerLink="/about">About Dr. Sundar Singh <span aria-hidden="true">↗</span></a>
             </div>
         </div>
     </section>
-    <section class="newsletter" id="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <div class="newsletter-text">
-                    <h3>Subscribe to Elemental Perspectives</h3>
-                    <p>Insights on critical minerals, mining technology, and resource security delivered directly to
-                        your inbox.</p>
-                </div>
-                <form class="newsletter-form" (ngSubmit)="subscribe(newsletter.value)"><input #newsletter type="email"
-                        placeholder="Enter your email" required><button class="btn btn-white"
-                        type="submit">Subscribe</button></form>
+
+    <section class="home-ideas" id="ideas" aria-labelledby="home-ideas-heading">
+        <div class="container home-ideas-content">
+            <div>
+                <p class="eyebrow">PERSPECTIVES &amp; WRITING</p>
+                <h2 id="home-ideas-heading">Ideas that inform the work</h2>
+                <p>These ideas explore how value is created, constrained, transferred and recovered across mining,
+                    metals and industrial value chains.</p>
+            </div>
+            <div class="home-idea-links">
+                <a class="home-text-link" routerLink="/ideas">Explore Ideas <span aria-hidden="true">↗</span></a>
+                <a class="home-text-link" routerLink="/writings">Explore Elemental Perspectives <span aria-hidden="true">↗</span></a>
             </div>
         </div>
-    </section>@if (notice()) { <div class="notice" role="status">{{ notice() }}</div>}
+    </section>
+
+    <section class="home-closing" id="contact" aria-labelledby="home-closing-heading">
+        <div class="container">
+            <p class="eyebrow">START A CONVERSATION</p>
+            <h2 id="home-closing-heading">Have an asset, a technology claim or a value-chain question on the table?</h2>
+            <p>Tell me what you are weighing.</p>
+            <a class="btn btn-white" routerLink="/contact">Get in Touch</a>
+        </div>
+    </section>
 </main>
 } @else {
 <router-outlet />

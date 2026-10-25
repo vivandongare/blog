@@ -1,114 +1,163 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
+  imports: [],
   template: `
     <main class="diligence-page">
       <div class="container">
         <header class="diligence-intro">
-          <p class="eyebrow">STRATEGIC DILIGENCE</p>
-          <h1>Will it survive contact with operational reality?</h1>
+          <p class="eyebrow">INDEPENDENT DILIGENCE &amp; STRATEGIC ADVISORY</p>
+          <h1>Three practices, one discipline.</h1>
           <p>
-            Standard technical and commercial diligence often operates as a compliance exercise
-            through a review of spreadsheets, lab results, and study conclusions against standard
-            checklists. While this process verifies whether a project or technology meets baseline
-            reporting criteria, it routinely fails to answer the only question that ultimately
-            matters: will this survive contact with operational reality?
-          </p>
-          <p>
-            Strategic diligence bridges the gap between feasibility on paper and performance in
-            the field. By combining three decades of hard-hat operating experience with extensive
-            evaluation across hundreds of deals, I look beneath surface-level metrics to stress-test
-            the core assumptions governing both the mineral asset and the technology intended to
-            unlock it.
+            Test what looks good on paper against the realities of ore, process, execution and
+            market.
           </p>
         </header>
 
         <section class="diligence-area" aria-labelledby="assets-heading">
-          <p class="eyebrow">01 / ASSETS</p>
+          <p class="eyebrow">01 / OREINTEL / ASSET DILIGENCE</p>
           <h2 id="assets-heading">Good reports are easy to produce. Bankable assets are rare.</h2>
-          <p>
-            Thousands of PEA, PFS, and DFS studies present projects that appear technically and
-            economically viable. Yet most don't hold up once those assumptions meet the field,
-            because standard frameworks frequently gloss over metallurgical recovery gaps, grade
-            and resource uncertainty, permitting and infrastructure friction, and true market
-            competitiveness.
+          <p class="diligence-audience">
+            For investors, lenders, strategic buyers and project owners evaluating a mineral asset.
           </p>
-          <p>
-            Drawing on 30+ years of operating experience and
-            <strong>100+ mineral asset evaluations</strong>, I test the validity of a project's
-            core assumptions to help decision-makers:
-          </p>
+          <div class="diligence-question">
+            <strong>The question</strong>
+            <p>
+              Do the assumptions behind the study support an operation that is competitive,
+              financeable and executable?
+            </p>
+          </div>
+          <h3 class="diligence-subheading">I examine</h3>
           <ul class="diligence-list">
             <li>
-              <strong>Uncover Mispriced Assets:</strong> Identify projects with fundamental
-              strengths that conventional thinking has missed.
+              <strong>Resource, reserve and mine plan:</strong> Are grade, continuity, mining method
+              and production assumptions consistent?
             </li>
             <li>
-              <strong>Expose Hidden Risk:</strong> Stress-test paper-thin economics and execution
-              bottlenecks before deploying capital.
+              <strong>Processing and recovery:</strong> Does the proposed flowsheet suit the actual
+              ore and its variability?
+            </li>
+            <li>
+              <strong>Economics and market:</strong> Where could the project sit on the cost curve,
+              and how sensitive is it to price, recovery, capex, opex and offtake assumptions?
+            </li>
+            <li>
+              <strong>Execution and context:</strong> What do infrastructure, permitting,
+              community, environmental and delivery risks mean for the project?
             </li>
           </ul>
-          <p class="diligence-objective">
-            <strong>The Bottom Line:</strong> I reject standard "feasibility" to isolate the few
-            assets that truly deserve strategic capital and development.
+          <div class="diligence-outcome">
+            <strong>What you get</strong>
+            <p>
+              A clear view of which assumptions deserve confidence, which need testing, what risks
+              could change the decision, and where overlooked strengths may improve the case.
+            </p>
+          </div>
+          <p class="diligence-formats">
+            <strong>Engagement formats:</strong> Rapid asset screen; full techno-economic
+            evaluation; independent review of an existing study.
           </p>
         </section>
 
         <section class="diligence-area" aria-labelledby="technology-heading">
-          <p class="eyebrow">02 / TECHNOLOGY</p>
-          <h2 id="technology-heading">Does it remove the constraint—or move it?</h2>
-          <p>Most technology diligence asks: <em>Is this technology ready?</em></p>
-          <p>
-            The right question is:
-            <strong
-              >Does it remove the specific constraint limiting the asset's value, or simply
-              relocate it somewhere more expensive?</strong
-            >
+          <p class="eyebrow">02 / TECTONICS / TECHNOLOGY DILIGENCE</p>
+          <h2 id="technology-heading">Does it remove the constraint, or move it?</h2>
+          <p class="diligence-audience">
+            For mining and metals companies evaluating technology, investors or CVCs considering
+            technology-led opportunities, and founders whose technology faces that scrutiny.
           </p>
-          <p>
-            TRL scores, pilot data, and pitch decks show what a technology does in isolation. They
-            rarely reveal whether it targets the primary operational bottleneck, or if it quietly
-            triggers a downstream failure, a pattern I call <strong>Constraint Shifting</strong>.
-          </p>
-          <p>
-            Backed by 30+ years on the plant floor and
-            <strong>500+ deep-tech evaluations</strong>, I stress-test claims against real-world
-            extractive metallurgy realities to help decision-makers:
-          </p>
-          <div class="technology-checks">
-            <article class="technology-check">
-              <h3>Confirm Constraint-Fit</h3>
-              <p>
-                <em
-                  >Verify that the technology targets the true bottleneck limiting asset value,
-                  not just a downstream symptom.</em
-                >
-              </p>
-            </article>
-            <article class="technology-check">
-              <h3>Test for Constraint Shifting</h3>
-              <p>
-                <em
-                  >Expose whether removing one operational bottleneck quietly creates an equal or
-                  worse constraint elsewhere in the flowsheet.</em
-                >
-              </p>
-            </article>
-            <article class="technology-check">
-              <h3>Assess Advantage Durability</h3>
-              <p>
-                <em
-                  >Determine if the economic edge survives feed variability, harsh operating
-                  environments, and commercial scale-up.</em
-                >
-              </p>
-            </article>
+          <div class="diligence-question">
+            <strong>The question</strong>
+            <p>
+              Does the claimed advantage address the bottleneck that actually limits performance or
+              value, and does it withstand real-world operating conditions, system-level constraints
+              and commercial scale-up?
+            </p>
           </div>
-          <p class="diligence-objective">
-            <strong>The Objective:</strong> To look past novelty or TRL scores, evaluating
-            technology solely on which constraint it actually removes, whether that removal
-            survives contact with scale, and what it is worth when it does.
+          <p>
+            Applying the <strong>Constraint Advantage</strong> framework, I test:
+          </p>
+          <ul class="diligence-list">
+            <li>
+              <strong>Constraint-fit:</strong> Is this the bottleneck that limits value, or only a
+              visible symptom?
+            </li>
+            <li>
+              <strong>Constraint Shifting:</strong> Does removing it create an equal or more costly
+              constraint elsewhere in the flowsheet or system?
+            </li>
+            <li>
+              <strong>Durability:</strong> Does the benefit hold across variable feed, realistic
+              operating conditions, throughput and scale?
+            </li>
+            <li>
+              <strong>Commercial consequence:</strong> What does the demonstrated advantage mean
+              for cost, recovery, throughput, risk and value?
+            </li>
+          </ul>
+          <div class="diligence-outcome">
+            <strong>What you get</strong>
+            <p>
+              A structured view of what the technology actually improves, what remains unproven,
+              where constraints may migrate, and what evidence is needed for a sound decision. For
+              founders, that means a clear view of which claims hold and what evidence would
+              strengthen the case.
+            </p>
+          </div>
+          <p class="diligence-formats">
+            <strong>Engagement formats:</strong> Technology claim review; pilot design and success
+            criteria; portfolio screening for a CVC.
+          </p>
+        </section>
+
+        <section class="diligence-area" aria-labelledby="roadmaps-heading">
+          <p class="eyebrow">03 / FUTUREFRAME / INNOVATION ROADMAPS</p>
+          <h2 id="roadmaps-heading">
+            Where is value moving across critical-mineral value chains, and what should
+            organisations do about it?
+          </h2>
+          <p class="diligence-audience">
+            For mining groups, investors, industry bodies and public institutions setting
+            technology, investment and resource-security priorities.
+          </p>
+          <div class="diligence-question">
+            <strong>The question</strong>
+            <p>
+              Which emerging risks and opportunities across critical-mineral value chains deserve
+              capital, partnership or policy attention, and in what order?
+            </p>
+          </div>
+          <h3 class="diligence-subheading">I map</h3>
+          <ul class="diligence-list">
+            <li>
+              <strong>Emerging risks:</strong> Which supply, technology and policy shifts could
+              reshape the chain, and how soon?
+            </li>
+            <li>
+              <strong>Technology options:</strong> Which technologies could change cost, recovery or
+              supply, and how mature are they?
+            </li>
+            <li>
+              <strong>Strategic dependencies:</strong> Where does the chain rely on a single
+              geography, process or supplier?
+            </li>
+            <li>
+              <strong>Priorities for action:</strong> Where should capital, partnership or policy
+              attention go first?
+            </li>
+          </ul>
+          <div class="diligence-outcome">
+            <strong>What you get</strong>
+            <p>
+              A prioritised roadmap showing where value is moving across the chain, which risks and
+              options deserve attention, and what to do first.
+            </p>
+          </div>
+          <p class="diligence-formats">
+            <strong>Engagement formats:</strong> Sector roadmap; technology landscape and watchlist;
+            opportunity map; strategy workshop; intelligence platform.
           </p>
         </section>
       </div>
@@ -124,7 +173,7 @@ import { Component } from '@angular/core';
 
       .diligence-intro,
       .diligence-area {
-        max-width: 900px;
+        max-width: 920px;
         margin: 0 auto;
       }
 
@@ -140,27 +189,27 @@ import { Component } from '@angular/core';
       }
 
       .diligence-intro h1 {
-        margin: 12px 0 28px;
+        margin: 12px 0 18px;
         color: var(--deep-blue);
-        font-size: clamp(36px, 6vw, 64px);
-        line-height: 1.1;
+        font-size: clamp(38px, 6vw, 64px);
+        line-height: 1.08;
       }
 
-      .diligence-intro p:not(.eyebrow),
-      .diligence-area > p:not(.eyebrow) {
+      .diligence-intro > p:last-child {
+        max-width: 760px;
         color: var(--muted);
-        font-size: 17px;
+        font-size: 20px;
       }
 
       .diligence-area {
-        margin-top: 36px;
+        margin-top: 30px;
         padding: 38px;
         border-radius: 8px;
         background: var(--surface);
       }
 
       .diligence-area h2 {
-        margin: 8px 0 22px;
+        margin: 8px 0 18px;
         color: var(--deep-blue);
         font-size: clamp(26px, 4vw, 36px);
         line-height: 1.2;
@@ -170,52 +219,84 @@ import { Component } from '@angular/core';
         margin-bottom: 0;
       }
 
+      .diligence-audience,
+      .diligence-area > p:not(.eyebrow, .diligence-formats) {
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .diligence-audience {
+        margin-bottom: 26px;
+      }
+
+      .diligence-question,
+      .diligence-outcome {
+        margin: 24px 0;
+        padding: 20px 24px;
+        border-left: 3px solid var(--deep-blue);
+        background: var(--warm-beige);
+      }
+
+      .diligence-question > strong,
+      .diligence-outcome > strong {
+        color: var(--deep-blue);
+      }
+
+      .diligence-question p,
+      .diligence-outcome p {
+        margin: 6px 0 0;
+        color: var(--muted);
+      }
+
+      .diligence-subheading {
+        margin: 28px 0 12px;
+        color: var(--deep-blue);
+        font-size: 20px;
+      }
+
       .diligence-list {
         display: grid;
         gap: 14px;
+        margin: 0;
         padding-left: 24px;
         color: var(--muted);
       }
 
-      .diligence-objective {
-        margin-top: 28px;
-        padding: 20px 24px;
-        border-left: 3px solid var(--deep-blue);
+      .diligence-list strong {
         color: var(--deep-blue);
-        background: var(--warm-beige);
       }
 
-      .technology-checks {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-        margin-top: 28px;
-      }
-
-      .technology-check {
-        padding: 22px;
-        border-radius: 6px;
-        background: var(--warm-beige);
-      }
-
-      .technology-check h3 {
-        margin-top: 0;
-        color: var(--deep-blue);
-        font-size: 18px;
-      }
-
-      .technology-check p {
-        margin-bottom: 0;
+      .diligence-formats {
+        margin: 24px 0;
         color: var(--muted);
       }
 
+      .diligence-formats strong {
+        color: var(--deep-blue);
+      }
+
+      .diligence-cta {
+        display: inline-block;
+        color: var(--deep-blue);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .diligence-cta:hover {
+        color: var(--accent);
+      }
+
       @media (max-width: 768px) {
-        .diligence-area {
-          padding: 26px 22px;
+        .diligence-page {
+          padding-top: 32px;
         }
 
-        .technology-checks {
-          grid-template-columns: 1fr;
+        .diligence-intro {
+          padding: 32px 0;
+        }
+
+        .diligence-area {
+          padding: 26px 22px;
         }
       }
     `,
