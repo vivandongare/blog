@@ -79,15 +79,59 @@ import { Component, Input } from '@angular/core';
               </section>
               <section class="about-details" aria-labelledby="career-heading">
                 <h3 id="career-heading">Career at a glance</h3>
-                <ul class="about-career">
-                  <li><strong>2025–present</strong> Sundar Singh Advisory</li>
-                  <li><strong>2019–2025</strong> VIMSON Group, CTO</li>
-                  <li><strong>2016–2019</strong> Geomysore Services, COO</li>
-                  <li><strong>2015–2016</strong> Sarda Mines (JSPL), Unit Head &amp; VP Mines</li>
-                  <li><strong>2014–2015</strong> Aditya Birla Group, AVP &amp; Head – Operations</li>
-                  <li><strong>1997–2014</strong> V.M. Salgaocar &amp; Bro., Assistant Manager to Deputy General Manager</li>
-                  <li><strong>1994–1997</strong> V.S. Dempo &amp; Co., Mining Engineer</li>
-                </ul>
+                <div class="about-career-scroll">
+                  <ol class="about-career">
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">01</span>
+                    <div class="career-stop-card">
+                      <time>2025 – present</time>
+                      <span>Sundar Singh Advisory</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">02</span>
+                    <div class="career-stop-card">
+                      <time>2019 – 2025</time>
+                      <span>VIMSON Group, CTO</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">03</span>
+                    <div class="career-stop-card">
+                      <time>2016 – 2019</time>
+                      <span>Geomysore Services, COO</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">04</span>
+                    <div class="career-stop-card">
+                      <time>2015 – 2016</time>
+                      <span>Sarda Mines (JSPL), Unit Head &amp; VP Mines</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">05</span>
+                    <div class="career-stop-card">
+                      <time>2014 – 2015</time>
+                      <span>Aditya Birla Group, AVP &amp; Head – Operations</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">06</span>
+                    <div class="career-stop-card">
+                      <time>1997 – 2014</time>
+                      <span>V.M. Salgaocar &amp; Bro., Assistant Manager to Deputy General Manager</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="career-stop-number" aria-hidden="true">07</span>
+                    <div class="career-stop-card">
+                      <time>1994 – 1997</time>
+                      <span>V.S. Dempo &amp; Co., Mining Engineer</span>
+                    </div>
+                  </li>
+                  </ol>
+                </div>
               </section>
             }
           </div>
@@ -149,16 +193,142 @@ import { Component, Input } from '@angular/core';
         padding-left: 22px;
       }
 
-      .about-career li strong {
-        display: inline-block;
-        min-width: 125px;
+      .about-career {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .about-career::before {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        border-top: 4px dotted var(--accent);
+        content: '';
+      }
+
+      .about-career li {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 0;
+        min-height: 330px;
+        text-align: center;
+      }
+
+      .career-stop-card {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        min-height: 126px;
+        padding: 14px 10px;
+        border: 2px solid var(--deep-blue);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .career-stop-card time {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .career-stop-card span {
         color: var(--deep-blue);
+        font-weight: 600;
+      }
+
+      .career-stop-number {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        display: grid;
+        width: 48px;
+        height: 48px;
+        transform: translateY(-50%);
+        place-items: center;
+        border: 5px solid var(--surface);
+        border-radius: 50%;
+        background: var(--deep-blue);
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .about-career li:nth-child(even) {
+        flex-direction: column-reverse;
+      }
+
+      @media (max-width: 900px) {
+        .about-career-scroll {
+          overflow-x: auto;
+        }
+
+        .about-career {
+          grid-template-columns: repeat(7, minmax(140px, 1fr));
+          min-width: 1080px;
+          padding: 0 0 12px;
+        }
+
+        .about-career li {
+          min-height: 330px;
+        }
       }
 
       @media (max-width: 600px) {
-        .about-career li strong {
-          display: block;
+        .about-career-scroll {
+          overflow: visible;
+        }
+
+        .about-career {
+          grid-template-columns: 1fr;
           min-width: 0;
+          gap: 0;
+          overflow: visible;
+          padding: 0 0 0 30px;
+        }
+
+        .about-career::before {
+          top: 0;
+          bottom: 0;
+          left: 12px;
+          width: 0;
+          border-top: 0;
+          border-left: 4px dotted var(--accent);
+        }
+
+        .about-career li,
+        .about-career li:nth-child(even) {
+          min-height: 0;
+          padding: 0 0 20px 32px;
+          align-items: flex-start;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .career-stop-card {
+          min-height: 0;
+          padding: 14px;
+        }
+
+        .career-stop-number {
+          top: 18px;
+          left: -12px;
+          width: 42px;
+          height: 42px;
+          transform: translate(-50%, 0);
         }
       }
     `,

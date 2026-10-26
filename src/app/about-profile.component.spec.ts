@@ -21,5 +21,8 @@ describe('AboutProfileComponent', () => {
     expect(element.textContent).toContain('Credentials');
     expect(element.textContent).toContain('Career at a glance');
     expect(element.textContent).toContain('Contributor to NITI Aayog');
+    expect(element.querySelectorAll('.about-career li')).toHaveLength(7);
+    expect(element.querySelector('.about-career')?.textContent).toContain('VIMSON Group');
+    expect(element.querySelector('.about-career')?.textContent).toContain('Sundar Singh Advisory');
   });
 });

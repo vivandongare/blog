@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EssayService } from './essay.service';
 
 @Component({
@@ -23,67 +23,85 @@ import { EssayService } from './essay.service';
             </p>
             <div class="featured-series" aria-label="Featured series">
               <strong>Featured series</strong>
-              <a routerLink="/ideas" fragment="metals-heading">Immortalising Metals</a>
+              <a
+                routerLink="/writings"
+                [queryParams]="{ view: 'all', theme: 'Immortalising Metals' }"
+              >
+                Immortalising Metals
+              </a>
               <span aria-hidden="true">·</span>
-              <a routerLink="/ideas" fragment="constraint-heading">Constraint Advantage</a>
+              <a
+                routerLink="/writings"
+                [queryParams]="{ view: 'all', theme: 'Constraint Advantage' }"
+              >
+                Constraint Advantage
+              </a>
             </div>
           </header>
-          <section class="latest-articles" aria-labelledby="latest-articles-heading">
+          <section class="latest-articles" aria-labelledby="articles-heading">
             <div class="latest-articles-heading">
-              <h2 id="latest-articles-heading">Latest articles</h2>
-              <a routerLink="/writings">View all essays <span aria-hidden="true">↗</span></a>
-            </div>
-            <div class="latest-articles-grid">
-              @for (essay of latestEssays(); track essay.episodeNumber) {
-                <a class="latest-article-card" [routerLink]="['/writings', essay.episodeNumber]">
-                  <span>EP{{ essay.episodeNumber }}</span>
-                  <h3>{{ essay.header }}</h3>
-                  <time [dateTime]="essay.date">{{ essay.date | date: 'MMM d, y' }}</time>
+              @if (showAllEssays()) {
+                <h2 id="articles-heading">Articles</h2>
+              } @else {
+                <h2 id="articles-heading">Latest articles</h2>
+                <a routerLink="/writings" [queryParams]="{ view: 'all' }">
+                  View all essays <span aria-hidden="true">↗</span>
                 </a>
-              } @empty {
-                <p class="no-results">No articles are available yet.</p>
               }
             </div>
-          </section>
-          <section class="essay-archive" aria-labelledby="all-essays-heading">
-            <h2 id="all-essays-heading">All essays</h2>
-            <div class="essay-controls">
-              <div class="theme-filter">
-                <label for="theme-filter">Filter by theme</label>
-                <select
-                  id="theme-filter"
-                  #themeFilter
-                  (change)="selectedTheme.set(themeFilter.value)"
-                >
-                  <option value="">All themes</option>
-                  @for (theme of themes(); track theme) {
-                    <option [value]="theme">{{ theme }}</option>
+            @if (showAllEssays()) {
+              <div class="essay-controls">
+                <div class="theme-filter">
+                  <label for="theme-filter">Filter by theme</label>
+                  <select
+                    id="theme-filter"
+                    #themeFilter
+                    (change)="setTheme(themeFilter.value)"
+                  >
+                    <option value="" [selected]="!selectedTheme()">All themes</option>
+                    @for (theme of themes(); track theme) {
+                      <option [value]="theme" [selected]="theme === selectedTheme()">
+                        {{ theme }}
+                      </option>
+                    }
+                  </select>
+                </div>
+                <div class="essay-search">
+                  <label for="essay-search">Search essays</label>
+                  <input
+                    id="essay-search"
+                    type="search"
+                    placeholder="Search titles and essay content"
+                    #searchInput
+                    (input)="searchQuery.set(searchInput.value)"
+                  />
+                </div>
+              </div>
+              <div class="essay-list">
+                @for (essay of filteredEssays(); track essay.episodeNumber) {
+                  <a class="essay-list-item" [routerLink]="['/writings', essay.episodeNumber]">
+                    <span>EP{{ essay.episodeNumber }}</span>
+                    <h2>{{ essay.header }}</h2>
+                    <time [dateTime]="essay.date">{{ essay.date | date: 'MMM d, y' }}</time>
+                    <strong>Read essay &#8599;</strong>
+                  </a>
+                } @empty {
+                  <p class="no-results">No essays match your filters.</p>
+                }
+              </div>
+            } @else {
+              <div class="latest-articles-grid">
+                @for (essay of latestEssays(); track essay.episodeNumber) {
+                  <a class="latest-article-card" [routerLink]="['/writings', essay.episodeNumber]">
+                    <span>EP{{ essay.episodeNumber }}</span>
+                    <h3>{{ essay.header }}</h3>
+                    <time [dateTime]="essay.date">{{ essay.date | date: 'MMM d, y' }}</time>
+                  </a>
+                } @empty {
+                    <p class="no-results">No articles are available yet.</p>
                   }
-                </select>
-              </div>
-              <div class="essay-search">
-                <label for="essay-search">Search essays</label>
-                <input
-                  id="essay-search"
-                  type="search"
-                  placeholder="Search titles and essay content"
-                  #searchInput
-                  (input)="searchQuery.set(searchInput.value)"
-                />
-              </div>
-            </div>
-            <div class="essay-list">
-              @for (essay of filteredEssays(); track essay.episodeNumber) {
-                <a class="essay-list-item" [routerLink]="['/writings', essay.episodeNumber]">
-                  <span>EP{{ essay.episodeNumber }}</span>
-                  <h2>{{ essay.header }}</h2>
-                  <time [dateTime]="essay.date">{{ essay.date | date: 'MMM d, y' }}</time>
-                  <strong>Read essay &#8599;</strong>
-                </a>
-              } @empty {
-                <p class="no-results">No essays match your filters.</p>
-              }
-            </div>
+                </div>
+            }
           </section>
         </div>
       </div>
@@ -136,6 +154,9 @@ import { EssayService } from './essay.service';
       }
       .featured-series strong {
         margin-right: 4px;
+        padding: 6px 10px;
+        border-radius: 4px;
+        background: var(--surface);
         color: var(--deep-blue);
       }
       .featured-series a,
@@ -164,8 +185,7 @@ import { EssayService } from './essay.service';
         gap: 16px;
         margin-bottom: 18px;
       }
-      .latest-articles-heading h2,
-      .essay-archive > h2 {
+      .latest-articles-heading h2 {
         margin: 0;
         color: var(--deep-blue);
         font-size: 28px;
@@ -204,9 +224,6 @@ import { EssayService } from './essay.service';
       }
       .latest-article-card:hover h3 {
         color: var(--accent);
-      }
-      .essay-archive > h2 {
-        margin-bottom: 22px;
       }
       .essay-controls {
         display: flex;
@@ -251,38 +268,42 @@ import { EssayService } from './essay.service';
         font: inherit;
       }
       .essay-list {
-        border-top: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
       }
       .no-results {
         color: var(--muted);
       }
       .essay-list-item {
-        display: grid;
-        grid-template-columns: 80px 1fr auto;
-        gap: 18px 30px;
-        align-items: center;
-        padding: 28px 0;
-        border-bottom: 1px solid var(--border);
+        display: flex;
+        min-height: 210px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px;
+        border-top: 3px solid var(--accent);
+        border-radius: 5px;
         color: var(--deep-blue);
+        background: var(--surface);
         text-decoration: none;
       }
       .essay-list-item > span {
+        color: var(--muted);
         font-size: 12px;
         letter-spacing: 1px;
-        color: var(--deep-blue);
       }
       .essay-list-item h2 {
-        margin: 0;
-        font-size: clamp(21px, 3vw, 32px);
+        margin: 14px 0;
+        font-size: 20px;
+        line-height: 1.3;
       }
       .essay-list-item time {
-        grid-column: 2;
+        margin-top: auto;
         color: var(--muted);
         font-size: 14px;
       }
       .essay-list-item strong {
-        grid-column: 3;
-        grid-row: 1 / span 2;
+        margin-top: 12px;
         font-size: 13px;
       }
       .essay-list-item:hover h2 {
@@ -290,6 +311,9 @@ import { EssayService } from './essay.service';
       }
       @media (max-width: 600px) {
         .latest-articles-grid {
+          grid-template-columns: 1fr;
+        }
+        .essay-list {
           grid-template-columns: 1fr;
         }
         .latest-articles-heading {
@@ -301,25 +325,20 @@ import { EssayService } from './essay.service';
           flex-direction: column;
           gap: 16px;
         }
-        .essay-list-item {
-          grid-template-columns: 58px 1fr;
-          gap: 10px 16px;
-        }
-        .essay-list-item time {
-          grid-column: 2;
-        }
-        .essay-list-item strong {
-          grid-column: 2;
-          grid-row: auto;
-        }
       }
     `,
   ],
 })
 export class EssayListComponent {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  protected readonly queryParams = toSignal(this.route.queryParamMap, {
+    initialValue: this.route.snapshot.queryParamMap,
+  });
+  protected readonly showAllEssays = computed(() => this.queryParams().get('view') === 'all');
   protected readonly essays = toSignal(inject(EssayService).essays, { initialValue: [] });
   protected readonly latestEssays = computed(() => this.essays().slice(0, 3));
-  protected readonly selectedTheme = signal('');
+  protected readonly selectedTheme = computed(() => this.queryParams().get('theme') ?? '');
   protected readonly searchQuery = signal('');
   protected readonly themes = computed(() =>
     [
@@ -341,4 +360,12 @@ export class EssayListComponent {
       return matchesTheme && matchesSearch;
     });
   });
+
+  protected setTheme(theme: string): void {
+    void this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { theme: theme || null },
+      queryParamsHandling: 'merge',
+    });
+  }
 }

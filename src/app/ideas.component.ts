@@ -64,7 +64,7 @@ import { RouterLink } from '@angular/router';
               the mill, and the capital spent has bought little.
             </p>
           </aside>
-          <a class="idea-link" routerLink="/writings">
+          <a class="idea-link" routerLink="/writings" [queryParams]="{ view: 'all', theme: 'Constraint Advantage' }">
             Read the Constraint Advantage articles <span aria-hidden="true">↗</span>
           </a>
         </section>
@@ -101,7 +101,7 @@ import { RouterLink } from '@angular/router';
               transition to secondary supply possible.
             </li>
           </ol>
-          <a class="idea-link" routerLink="/writings">
+          <a class="idea-link" routerLink="/writings" [queryParams]="{ view: 'all', theme: 'Immortalising Metals' }">
             Read the Immortalising Metals series <span aria-hidden="true">↗</span>
           </a>
         </section>
@@ -109,7 +109,7 @@ import { RouterLink } from '@angular/router';
         <section class="ideas-more">
           <h2>Explore the writing</h2>
           <p>Read essays applying these ideas to mining, metals and technology.</p>
-          <a class="btn btn-primary" routerLink="/writings">Browse Elemental Perspectives</a>
+          <a class="btn btn-primary" routerLink="/writings" [queryParams]="{ view: 'all' }">Browse Elemental Perspectives</a>
         </section>
       </div>
     </main>

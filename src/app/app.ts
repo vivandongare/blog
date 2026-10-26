@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, signal } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -24,7 +25,12 @@ export class App implements OnInit {
   protected readonly showBackToTop = signal(false);
   protected readonly backToTopBottom = signal(24);
 
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    viewportScroller: ViewportScroller,
+  ) {
+    viewportScroller.setOffset([0, 70]);
+  }
 
   ngOnInit(): void {
     this.router.events

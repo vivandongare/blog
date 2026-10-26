@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
           </p>
         </header>
 
-        <section class="diligence-area" aria-labelledby="assets-heading">
+        <section id="assets-section" class="diligence-area" aria-labelledby="assets-heading">
           <p class="eyebrow">01 / OREINTEL / ASSET DILIGENCE</p>
           <h2 id="assets-heading">Good reports are easy to produce. Bankable assets are rare.</h2>
           <p class="diligence-audience">
@@ -61,7 +61,7 @@ import { RouterLink } from '@angular/router';
           </p>
         </section>
 
-        <section class="diligence-area" aria-labelledby="technology-heading">
+        <section id="technology-section" class="diligence-area" aria-labelledby="technology-heading">
           <p class="eyebrow">02 / TECTONICS / TECHNOLOGY DILIGENCE</p>
           <h2 id="technology-heading">Does it remove the constraint, or move it?</h2>
           <p class="diligence-audience">
@@ -112,7 +112,7 @@ import { RouterLink } from '@angular/router';
           </p>
         </section>
 
-        <section class="diligence-area" aria-labelledby="roadmaps-heading">
+        <section id="roadmaps-section" class="diligence-area" aria-labelledby="roadmaps-heading">
           <p class="eyebrow">03 / FUTUREFRAME / INNOVATION ROADMAPS</p>
           <h2 id="roadmaps-heading">
             Where is value moving across critical-mineral value chains, and what should
